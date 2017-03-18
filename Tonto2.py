@@ -11,7 +11,7 @@ import time
 from datetime import date 
 import re
 #import pyttsx
-plataforma = sys.platform
+import platform
 
 version = "1.5"
 ideas = []
@@ -32,7 +32,7 @@ def frases(numero):
 		elif numero == "2":
 				linea = "Accediendo a banco de trabajo..."
 		elif numero == "3":
-				linea = "Necesitas algo mas? "
+				linea = "Necesitas algo más? "
 		elif numero == "4":
 				linea = "[s = si] [n = no]"
 		elif numero == "5":
@@ -88,134 +88,17 @@ def frases(numero):
 		#Aparte de os.system() tambien hay soluciones usando diferentes librerias. 
 
 def operation_system():
-		if plataforma == "linux": # Firma del Linux
+		if platform.system() == "Linux": # Firma del Linux
 				os.system("clear")
-		elif plataforma == "darwin": # Firma del Mac
+		elif platform.system() == "Mac": # Firma del Mac
 				os.system("clear")
-		elif plataforma == "win32": # Firam del Windows
+		elif platform.system() == "Windows": # Firam del Windows
 				os.system("cls")
 		else: # Otros sistemas operativos
 				os.system("clear")
 
-operation_system = operation_system()
-
-#Este es el sitema de Busqueda o peticiones
-
-def sistema(busqueda):
-		#saludo = re.search(r'como estas(.*)', peticion)
-		trabajar = re.search(r'trabaj(.*)', peticion)
-		empollar = re.search(r'estudi(.*)', peticion)
-		ritmo = re.search(r'musi(.*)', peticion)
-		ver = re.search(r'imagen(.*)', peticion)
-		codigo = re.search(r'programa(.*)', peticion)
-		bideas = re.search(r'idea(.*)',peticion)
-		jugar = re.search(r'jugar', peticion)
-		quien = re.search(r'eres',peticion)
-		descansar = re.search(r'descans(.*)', peticion)
-
-		'''if saludo:
-				print("¿Bien y usted?")
-				operation_system'''
-
-		if trabajar:
-				print(trabajo(peticion))
-				operation_system
-		elif empollar:
-				print(estudiar(peticion))
-				operation_system
-		elif ritmo:
-				print(musica(peticion))
-				operation_system
-		elif ver:
-				print(imagenes(peticion))
-				operation_system
-		elif codigo:
-				print(programar(peticion))
-				operation_system
-		elif bideas:
-				print(banco(peticion))
-				operation_system
-		elif jugar: 
-				print(games(peticion))
-				operation_system
-		elif quien: 
-				print(who(peticion))
-				operation_system
-		elif descansar: 
-				print(fin(peticion))
-				operation_system
-		else: 
-				frases("1")
-				#Podriamos ordenar que reproduzca el sonido que queramos
-				#voz(diba)
-				time.sleep(3)
-				operation_system
-
-def trabajo(seleccion):	
-		frases("2")
-		#voz(diba)
-		time.sleep(3)
-		os.system('"RUTA A TU EDITOR DE TEXTO FAVORITO"')
+def variable():
 		frases("3")
-		#voz(diba)
-		frases("4")
-		d2 =  input("-->:")
-		decision1 = re.search(r's(.*)', d2)
-		decision2 = re.search(r'n(.*)', d2)
-		if decision1:
-				operation_system
-		elif decision2:
-				operation_system
-				frases("5")
-				#voz(diba)
-				time.sleep(3)	
-				sys.exit(0) 
-
-def estudiar(Albert): 
-		frases("6")
-		#voz(diba)
-		time.sleep(4)
-		frases("7")
-		#voz(diba)
-		time.sleep(4)
-		if plataforma == "linux": # Firma del Linux
-				os.system("nautilus $HOME/Documents") # Requiere instalar nautilus (sudo apt install nautilus)
-		elif plataforma == "darwin": # Firma del Mac
-				os.system("FALTA EL COMANDO DE RUTA")
-		elif plataforma == "win32": # Firam del Windows
-				os.system("start %USERPROFILE%/Documents")
-		else: # Otros sistemas operativos
-				os.system("nautilus $HOME/Documents") # Requiere instalar nautilus (sudo apt install nautilus)
-		time.sleep(3)
-		frases("3")
-		#voz(diba)
-		frases("4")
-		d2 = input("-->:")
-		decision1 = re.search(r's(.*)', d2)
-		decision2 = re.search(r'n(.*)', d2)
-		if decision1:
-				operation_system
-		elif decision2:
-				operation_system
-				frases("5")
-				#voz(diba)
-				time.sleep(3)	
-				sys.exit(0) 	
-
-def musica(beethoven):
-		frases("8")
-		#voz(diba)
-		time.sleep(3)
-		if plataforma == "linux": # Firma del Linux
-				os.system("nautilus $HOME/Music") # Requiere instalar nautilus (sudo apt install nautilus)
-		elif plataforma == "darwin": # Firma del Mac
-				os.system("FALTA EL COMANDO DE RUTA")
-		elif plataforma == "win32": # Firam del Windows
-				os.system("start %USERPROFILE%/Music")
-		else: # Otros sistemas operativos
-				os.system("nautilus $HOME/Music") # Requiere instalar nautilus (sudo apt install nautilus)
-		frases("3")
-		#voz(diba)
 		frases("4")
 		d2 = input("-->: ")
 		decision1 = re.search(r's(.*)', d2)
@@ -225,68 +108,134 @@ def musica(beethoven):
 		elif decision2:
 				operation_system
 				frases("5")
-				#voz(diba)
 				time.sleep(3)	
-				sys.exit(0) 
+				sys.exit(0)
+
+#Este es el sitema de Busqueda o peticiones
+
+def sistema(busqueda):
+		saludo = re.search(r'hola(.*)', peticion)
+		trabajar = re.search(r'trabaj(.*)', peticion)
+		empollar = re.search(r'estudi(.*)', peticion)
+		ritmo = re.search(r'musi(.*)', peticion)
+		ver = re.search(r'imagen(.*)', peticion)
+		codigo = re.search(r'programa(.*)', peticion)
+		bideas = re.search(r'idea(.*)',peticion)
+		jugar = re.search(r'jugar', peticion)
+		quien = re.search(r'eres',peticion)
+		descansar = re.search(r'descans(.*)', peticion) or re.search(r'apaga(.*)', peticion) 
+
+		if saludo:
+				print("¿Bien y usted?")
+				operation_system()
+		elif trabajar:
+				print(trabajo(peticion))
+				operation_system()
+		elif empollar:
+				print(estudiar(peticion))
+				operation_system()
+		elif ritmo:
+				print(musica(peticion))
+				operation_system()
+		elif ver:
+				print(imagenes(peticion))
+				operation_system()
+		elif codigo:
+				print(programar(peticion))
+				operation_system()
+		elif bideas:
+				print(banco(peticion))
+				operation_system()
+		elif jugar:
+				print(games(peticion))
+				operation_system()
+		elif quien:
+				print(who(peticion))
+				operation_system
+		elif descansar:
+				print(fin(peticion))
+				operation_system
+		else: 
+				frases("1")
+				#Podriamos ordenar que reproduzca el sonido que queramos
+				#voz(diba)
+				time.sleep(3)
+				operation_system()
+
+def trabajo(seleccion):	
+		frases("2")
+		#voz(diba)
+		time.sleep(3)
+		os.system('C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office 2013\Word 2013')
+		variable()
+
+def estudiar(Albert): 
+		frases("6")
+		#voz(diba)
+		time.sleep(4)
+		frases("7")
+		#voz(diba)
+		time.sleep(4)
+		if platform.system() == "Linux": # Firma del Linux
+				os.system("nautilus $HOME/Documents") # Requiere instalar nautilus (sudo apt install nautilus)
+		elif platform.system() == "Mac": # Firma del Mac
+				os.system("FALTA EL COMANDO DE RUTA")
+		elif platform.system() == "Windows": # Firam del Windows
+				os.system("start %USERPROFILE%/Documents")
+		else: # Otros sistemas operativos
+				os.system("nautilus $HOME/Documents") # Requiere instalar nautilus (sudo apt install nautilus)
+		time.sleep(3)
+		variable()
+
+def musica(beethoven):
+		frases("8")
+		#voz(diba)
+		time.sleep(3)
+		if platform.system() == "Linux": # Firma del Linux
+				os.system("nautilus $HOME/Music") # Requiere instalar nautilus (sudo apt install nautilus)
+		elif platform.system() == "Mac": # Firma del Mac
+				os.system("FALTA EL COMANDO DE RUTA")
+		elif platform.system() == "Windows": # Firam del Windows
+				os.system("start %USERPROFILE%/Music")
+		else: # Otros sistemas operativos
+				os.system("nautilus $HOME/Music") # Requiere instalar nautilus (sudo apt install nautilus)
+		variable()
 
 def imagenes(recuerdos):
 			frases("20")
 			#voz(diba)
 			time.sleep(3)
-			if plataforma == "linux": # Firma del Linux
-					os.system("nautilus $HOME/Pictures") # Requiere instalar nautilus (sudo apt install nautilus) 
-			elif plataforma == "darwin": # Firma del Mac
+			if platform.system() == "Linux": # Firma del Linux
+					os.system("nautilus $HOME/Pictures") # Requiere instalar nautilus (sudo apt install nautilus)
+					# En caso de que no se quiera utilizar nautilus se pudede substituir por "cd" y acceder desde terminal
+			elif platform.system() == "Mac": # Firma del Mac
 					os.system("FALTA EL COMANDO DE RUTA")
-			elif plataforma == "win32": # Firam del Windows
+			elif platform.system() == "Windows": # Firam del Windows
 					os.system("start %USERPROFILE%/Pictures")
 			else: # Otros sistemas operativos
 					os.system("nautilus $HOME/Pictures") # Requiere instalar nautilus (sudo apt install nautilus)
-			frases("3")
-			#voz(diba)
-			frases("4")
-			time.sleep(2)
-			d2 = input("-->: ")
-			decision1 = re.search(r's(.*)', d2)
-			decision2 = re.search(r'n(.*)', d2)
-			if decision1:
-					operation_system
-			elif decision2:
-					operation_system
-					frases("5")
-					#voz(diba)
-					time.sleep(3)	
-					sys.exit(0) 
+					# En caso de que no se quiera utilizar nautilus se pudede substituir por "cd" y acceder desde terminal
+			variable()
 
 def programar(Wozniak):
 			frases("9") 
 			#voz(diba)
-			if plataforma == "linux": # Firma del Linux
-					os.system("nautilus $HOME/Documents/GitHub") # Requiere instalar nautilus (sudo apt install nautilus) 
-			elif plataforma == "darwin": # Firma del Mac
+			if platform.system() == "Linux": # Firma del Linux
+					os.system("nautilus $HOME/Documents/GitHub") # Requiere instalar nautilus (sudo apt install nautilus)
+					# En caso de que no se quiera utilizar nautilus se pudede substituir por "cd" y acceder desde terminal
+			elif platform.system() == "Mac": # Firma del Mac
 					os.system("FALTA EL COMANDO DE RUTA")
-			elif plataforma == "win32": # Firam del Windows
+			elif platform.system() == "Windows": # Firam del Windows
 					os.system("start %USERPROFILE%/Documents/GitHub")
 			else: # Otros sistemas operativos
 					os.system("nautilus $HOME/Documents/GitHub") # Requiere instalar nautilus (sudo apt install nautilus)
+					# En caso de que no se quiera utilizar nautilus se pudede substituir por "cd" y acceder desde terminal
 			time.sleep(3)
 			frases("10") 
 			#voz(diba)
 			os.system('"RUTA EDITOR DE CODIGO"')
 			time.sleep(3)
-			frases("3")
-			#voz(diba)
-			frases("4")
-			d2 = input("-->: ")
-			decision1 = re.search(r's(.*)', d2)
-			decision2 = re.search(r'n(.*)', d2)
-			if decision1:
-					operation_system
-			elif decision2:
-					operation_system
-					frases("5")
-					#voz(diba)
-					time.sleep(3)	
-					sys.exit(0) 
+			variable()
 
 def banco(delacalle):
 		while True:
@@ -317,20 +266,7 @@ def banco(delacalle):
 						#voz(diba)
 						frases("12")
 						time.sleep(3)
-						frases("13")
-						#voz(diba)
-						frases("4")
-						d2 = input("-->: ")
-						decision1 = re.search(r's(.*)', d2)
-						decision2 = re.search(r'n(.*)', d2)
-						if decision1:
-								operation_system
-						elif decision2:
-								operation_system
-								frases("5")
-								#voz(diba)
-								time.sleep(3)
-								sys.exit(0)
+						variable()
 				else: 
 						frases("14")
 						#voz(diba)
@@ -342,50 +278,24 @@ def games(juegos):
 		time.sleep(5)
 		os.system('"RUTA A JUEGO O CAPERTA DE JUEGOS"')
 		time.sleep(3)
-		frases("13")
-		#voz(diba)
-		frases("4")
-		d2 =  input("-->: ")
-		decision1 =  re.search(r's(.*)', d2)
-		decision2 = re.search(r'n(.*)', d2)
-		if decision1:
-				operation_system
-		elif decision2:
-				operation_system
-				frases("14")
-				#voz(diba)
-				time.sleep(3)	
-				sys.exit(0) 
+		variable()
 
 def who(Snifer):
 		frases("16")
 		#voz(diba)
 		time.sleep(7)
-		frases("13")
-		#voz(diba)
-		frases("4")
-		d2 =  input("-->: ")
-		decision1 =  re.search(r's(.*)', d2)
-		decision2 = re.search(r'n(.*)', d2)
-		if decision1:
-				operation_system
-		elif decision2:
-				operation_system
-				frases("14")
-				#voz(diba)
-				time.sleep(3)	
-				sys.exit(0) 
+		variable()
 
 def fin(apagar):
 		frases("17")
 		#voz(diba)
 		time.sleep(3)
-		operation_system
+		operation_system()
 		sys.exit(0)	
 
 #Saludo, molaria personalizarle el nombre a la maquina
 
-frases("18")
+print("Hola " + nombre + ", que te apeteceria hacer hoy?")
 #voz(diba)
 time.sleep(4)
 
@@ -400,4 +310,3 @@ while True:
 
 		peticion = input("-->: ")
 		print(sistema(peticion))
-
